@@ -5,7 +5,8 @@ import asyncio
 
 app = FastAPI()
 cl = CounterLimit("redis://localhost")
-asyncio.create_task(cl.setup([("my-key-cardiff",10)]))
+#asyncio.create_task(cl.setup([("my-key-cardiff",10)]))
+asyncio.create_task(cl.setup([("my-key-test",10)]))
 
 async def check_key(key:str):
     res = await cl.decrease(key)
