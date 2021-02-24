@@ -1,4 +1,4 @@
-from couter_limit.redismodule import RedisDB
+from couterlimit.redismodule import RedisDB
 import pytest
 
 
