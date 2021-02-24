@@ -1,11 +1,11 @@
 from typing import Optional
 from fastapi import Depends, FastAPI, HTTPException
-from app.counterlimit import CounterLimit
+from pycounter_api.counterlimit import CounterLimit
 import asyncio
 
 app = FastAPI()
 cl = CounterLimit("redis://localhost")
-asyncio.create_task(cl.setup([("my-key-test",10)]))
+asyncio.create_task(cl.setup([("my-key-cardiff",10)]))
 
 async def check_key(key:str):
     res = await cl.decrease(key)

@@ -1,4 +1,4 @@
-from app.redismodule import RedisDB
+from pycounter_api.redismodule import RedisDB
 
 class CounterLimit:
     def __init__(self, url):
