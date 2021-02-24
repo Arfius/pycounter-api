@@ -2,30 +2,31 @@ import aioredis
 import asyncio
 
 class RedisDB:
-    def __init__(self, url, key_threshold):
+    def __init__(self, url):
         self.url = url
-        self.key_threshold = key_threshold
 
-    async def init(self):
+    async def __create_entry(self, key, max_value):
+        if await self.redis.exists(key) == 0:
+            await self.__set_key_value(key, int(max_value))
+
+    async def init(self, tuple_key_threshold):
         self.redis = await aioredis.create_redis_pool(self.url)
-        value = await self.status(self.key)
-        if value is None:
-            await self.__set_key_value(self.key, self.max_value)
-        return int(value)
-            
+        # [await self.__create_entry( key_value[0], key_value[1]) for key_value in tuple_key_threshold]
+        await self.__create_entry(tuple_key_threshold[0], tuple_key_threshold[1])
+    
     async def __set_key_value(self, key, value):
          return await self.redis.set(key, value)
 
-    async def descrese(self):
-        value = int(await self.status(self.key))
-        value -=1
-        return await self.__set_key_value(self.key,value)
+    async def decrease(self, key):
+        await self.redis.decr(key)
+        return await self.status(key)
 
-    async def status(self):
-        return await self.redis.get(self.key)
+    async def status(self, key):
+        res = await self.redis.get(key)
+        return int(res) if res is not None else res
 
     async def destroy(self, key):
-        return await self.redis.delete(self.key)
+        return await self.redis.delete(key)
 
     async def close(self):
         self.redis.close()

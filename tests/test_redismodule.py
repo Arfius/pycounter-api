@@ -1,26 +1,28 @@
 from couter_limit.redismodule import RedisDB
 import pytest
 
-
-@pytest.mark.asyncio
-async def test_init_db():
-    dbredis = RedisDB('redis://localhost',"mykey",100)
-    res = await dbredis.init()
-    await dbredis.close()
     
 @pytest.mark.asyncio
 async def test_decrease_db():
-    dbredis = RedisDB('redis://localhost',"mykey",100)
-    await dbredis.init()
-    res = await dbredis.descrese("mykey")
+    dbredis = RedisDB('redis://localhost')
+    await dbredis.init(("mykey",100))
+    res = await dbredis.decrease("mykey")
     await dbredis.close()
-    assert res == True
-
+    assert res == 99
 
 @pytest.mark.asyncio
 async def test_status_db():
-    dbredis = RedisDB('redis://localhost',"mykey",100)
-    await dbredis.init()
+    dbredis = RedisDB('redis://localhost')
+    await dbredis.init(("mykey",100))
     res = await dbredis.status("mykey")
-    print("res-----------",res)
     await dbredis.close()
+    assert res == 99
+
+@pytest.mark.asyncio
+async def test_destroy_db():
+    dbredis = RedisDB('redis://localhost')
+    await dbredis.init(("mykey",100))
+    await dbredis.destroy("mykey")
+    res = await dbredis.status("mykey")
+    await dbredis.close()
+    assert res == None
