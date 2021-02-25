@@ -2,8 +2,10 @@
 
 A tool to monitoring the number of requests from an or multiple _api_key_.
 
+![ci/cd](https://github.com/Arfius/requests-counter/actions/workflows/request-counter.yml/badge.svg)
 
 #### Use cases
+
 Scenario: A Company that sell a Service that is limited by a max amount of requests.
 
 - As a Company, I would set a request limit for an _api_key_.
