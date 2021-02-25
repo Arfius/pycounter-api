@@ -1,6 +1,6 @@
-from pycounter_api.redismodule import RedisDB
+from requests_counter._redismodule import RedisDB
 
-class CounterLimit:
+class ReqCounter:
     def __init__(self, url):
         self.rds = RedisDB(url)
     

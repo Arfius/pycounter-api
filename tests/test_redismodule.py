@@ -1,4 +1,4 @@
-from app.redismodule import RedisDB
+from requests_counter._redismodule import RedisDB
 import pytest
 
 

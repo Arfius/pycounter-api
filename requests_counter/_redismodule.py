@@ -2,6 +2,7 @@ import aioredis
 import asyncio
 import typing
 
+
 class RedisDB:
     def __init__(self, url):
         self.url = url
