@@ -23,8 +23,3 @@ async def reset(key:str,value:int):
 async def status():
     values = await cl.status()
     return values
-
-@app.get("/depends/{key}")
-async def consume_key(key: dict = Depends(check_key)):
-    res = await cl.decrease(key)
-    return {"key": key, "alive":res}
