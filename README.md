@@ -24,7 +24,7 @@ $> docker run --name test-redis -p6379:6379 -ti redis redis-server --appendonly 
 ### Package Installation
 
 ```bash
-$> pip install git+https://github.com/Arfius/requests-counter
+$> pip install requests-counter
 ```
 
 
