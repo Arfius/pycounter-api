@@ -26,7 +26,7 @@ jobs:
         docker run --name test-redis2 -p6379:6379 -d redis redis-server
     - name: Lint with flake8
       run: |
-        flake8 --max-line-length 105
+        flake8 --max-line-length 200
     - name: Test with pytest
       run: |
         pytest
