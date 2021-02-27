@@ -2,15 +2,15 @@
 
 A tool to monitor the number of HTTP requests.
 
-It uses a key as extra parameter in the HTTP header, and optionally can filter the HTTP request per _origin_.
+It uses a key as extra parameter in the HTTP header, and optionally can filter the HTTP request per _source_ (like origin).
 
 ![ci/cd](https://github.com/Arfius/requests-counter/actions/workflows/request-counter.yml/badge.svg)
 
 #### Use cases
 
-Scenario: A Company that sell a Service that is limited by a max amount of requests and/or filtered by origin HTTP request parameter.
+Scenario: A Company that sell a Service that is limited by a max amount of requests and/or filtered by source HTTP request parameter.
 
-- As a Company, I want to set a request limit for an _apiKey_and/or by origin.
+- As a Company, I want to set a request limit for an _apiKey_and/or by source.
 - As a Company, I want to update/destroy/inspect the status of subscription via api.
 
 ### Installation
@@ -49,7 +49,7 @@ cl = ReqCounter("redis://localhost")
 asyncio.create_task(cl.setup([("my-api-key-test",10)]))
 
 #4. Declare a function to inject to Depends module. It will decrease the max_value for each request. It will raise a 429 HTTPException when max_value is 0.
-async def check_key(apiKey: str = Header(None)):
+async def check_key(apiKey: str = Header(None), source: str = Header(None)):
     res = await cl.decrease(apiKey)
     if res == False:
         raise HTTPException(429, "Too Many Requests", headers={"Retry-After": "renew subscription"})
