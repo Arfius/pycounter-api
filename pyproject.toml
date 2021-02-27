@@ -1,17 +1,19 @@
 [tool.poetry]
 name = "requests-counter"
-version = "1.2.0"
+version = "2.0.1"
 description = "A tool to monitor the number of HTTP requests through an _apiKey_ in the HTTP Header."
 authors = ["Alfonso Farruggia"]
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/Arfius/requests-counter"
 repository = "https://github.com/Arfius/requests-counter"
-keywords = ["monitor", "api", "request", "api_key"]
-
+keywords = ["monitor", "api", "request", "api_key", "origin", "source"]
 include = [
     "LICENSE",
 ]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/Arfius/requests-counter/issues"
 
 [tool.poetry.dependencies]
 python = "^3.7"

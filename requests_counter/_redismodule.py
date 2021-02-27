@@ -4,14 +4,15 @@ import aioredis
 class RedisDB:
     def __init__(self, url):
         self.url = url
+        self.redis = None
 
-    async def __create_entry(self, key: str, max_value: int) -> None:
+    async def create_entry(self, key: str, max_value: int) -> None:
         if await self.redis.exists(key) == 0:
             await self.redis.set(key, max_value)
 
-    async def init(self, tuple_key_threshold: tuple) -> None:
-        self.redis = await aioredis.create_redis_pool(self.url)
-        [await self.__create_entry(key_value[0], key_value[1]) for key_value in tuple_key_threshold]
+    async def setup(self):
+        if self.redis is None:
+            self.redis = await aioredis.create_redis_pool(self.url)
 
     async def set_key_value(self, key: str, value: int) -> int:
         if await self.redis.exists(key) != 0:
@@ -26,7 +27,7 @@ class RedisDB:
 
     async def status(self, key: str) -> int:
         res = await self.redis.get(key)
-        return int(res) if res is not None else res
+        return res if res is not None else res
 
     async def destroy(self, key: str) -> bool:
         if await self.redis.exists(key) != 0:
