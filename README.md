@@ -74,4 +74,4 @@ Command below run the server to interact with your redis instance for
 $> uvicorn requests_counter.api:app --reload --port 8080
 ```
 
-Run `http://locahost:8080/dosc` for documentation.
+Run `http://locahost:8080/docs` for documentation.
