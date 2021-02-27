@@ -4,6 +4,7 @@ A tool to monitor the number of HTTP requests.
 
 It uses a key as extra parameter in the HTTP header, and optionally can filter the HTTP request per _source_ (like origin).
 
+
 ![ci/cd](https://github.com/Arfius/requests-counter/actions/workflows/request-counter.yml/badge.svg)
 
 #### Use cases
