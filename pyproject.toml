@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "requests-counter"
-version = "1.0.2"
-description = "A tool to monitor the number of requests from an or multiple api_key."
+version = "1.1.0"
+description = "A tool to monitor the number of HTTP requests through an _apiKey_ in the HTTP Header."
 authors = ["Alfonso Farruggia"]
 license = "MIT"
 readme = "README.md"

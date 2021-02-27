@@ -13,13 +13,13 @@ cl = ReqCounter("redis://localhost")
 asyncio.create_task(cl.setup([("my-api-key-test",10)]))
 
 #4. Declare a function to inject to Depends module. It will decrease the max_value for each request. It will raise a 429 HTTPException when max_value is 0.
-async def check_key(api_key: str = Header(None)):
-    res = await cl.decrease(api_key)
+async def check_key(apiKey: str = Header(None)):
+    res = await cl.decrease(apiKey)
     if res == False:
         raise HTTPException(429, "Too Many Requests", headers={"Retry-After": "renew subscription"})
-    return api_key
+    return apiKey
 
 #5. Inject the check_key function to endpoint
 @app.get("/consume")
-async def consume_key(api_key = Depends(check_key)):
-    return {"job": "done", "api_key":api_key}
+async def consume_key(apiKey = Depends(check_key)):
+    return {"job": "done", "apiKey":apiKey}
