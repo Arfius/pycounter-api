@@ -1,6 +1,6 @@
 # requests-counter
-
-A tool to monitor the number of HTTP requests through an _apiKey_ in the HTTP Header.
+A tool to monitor the number of HTTP requests.
+It uses a extra key as addictional parameter in the HTTP header.
 
 ![ci/cd](https://github.com/Arfius/requests-counter/actions/workflows/request-counter.yml/badge.svg)
 
