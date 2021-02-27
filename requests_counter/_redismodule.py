@@ -5,13 +5,13 @@ class RedisDB:
     def __init__(self, url):
         self.url = url
         self.redis = None
-        
+
     async def create_entry(self, key: str, max_value: int) -> None:
         if await self.redis.exists(key) == 0:
             await self.redis.set(key, max_value)
 
     async def setup(self):
-        if self.redis is None : 
+        if self.redis is None:
             self.redis = await aioredis.create_redis_pool(self.url)
 
     async def set_key_value(self, key: str, value: int) -> int:

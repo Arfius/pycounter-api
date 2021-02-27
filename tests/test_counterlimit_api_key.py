@@ -23,6 +23,7 @@ async def test_reset():
     await cl.close()
     assert res == 100
 
+
 @pytest.mark.asyncio
 async def test_status():
     cl = ReqCounter('redis://localhost')

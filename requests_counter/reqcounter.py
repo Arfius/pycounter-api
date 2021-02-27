@@ -9,7 +9,7 @@ class ReqCounter:
     async def setup_api_key(self, tuple_key_threshold):
         await self.rds.setup()
         [await self.rds.create_entry(key_value[0], key_value[1]) for key_value in tuple_key_threshold]
-    
+
     async def setup_origin(self, list_of_origin):
         await self.rds.setup()
         await self.rds.create_entry(self.__origin_internal_key, ",".join(list_of_origin))

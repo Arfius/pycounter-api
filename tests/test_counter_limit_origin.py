@@ -1,7 +1,7 @@
 from requests_counter.reqcounter import ReqCounter
 import pytest
 
-origin_allowed = ["origin_1","origin_2"]
+origin_allowed = ["origin_1", "origin_2"]
 
 
 @pytest.mark.asyncio
@@ -12,6 +12,7 @@ async def test_check_origin_in():
     await cl.destroy_all()
     await cl.close()
     assert res is True
+
 
 @pytest.mark.asyncio
 async def test_check_origin_not_in():
