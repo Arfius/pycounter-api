@@ -4,9 +4,16 @@ from requests_counter._redismodule import RedisDB
 class ReqCounter:
     def __init__(self, url):
         self.rds = RedisDB(url)
+        self.__origin_internal_key = "rc_list_origin"
 
-    async def setup(self, values):
-        await self.rds.init(values)
+    async def setup_api_key(self, values):
+        await self.rds.init_api_key(values)
+    
+    async def setup_origin(self, values):
+        await self.rds.init_origin(self.__origin_internal_key, values)
+
+    async def check_origin(self, origin):
+        return origin in await self.status(self.__origin_internal_key)
 
     async def decrease(self, key):
         value = await self.rds.decrease(key)
