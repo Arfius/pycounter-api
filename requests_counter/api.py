@@ -5,7 +5,7 @@ import asyncio
 
 app = FastAPI()
 cl = ReqCounter("redis://localhost")
-asyncio.create_task(cl.setup([]))
+asyncio.create_task(cl.setup_api_key([]))
 
 
 @app.get("/destroy/{key}")
