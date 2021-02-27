@@ -30,4 +30,4 @@ jobs:
         flake8 --max-line-length 200
     - name: Test with pytest
       run: |
-        pytest
+        poetry run pytest
