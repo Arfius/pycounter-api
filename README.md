@@ -1,15 +1,17 @@
 # requests-counter
 
-A tool to monitor the number of HTTP requests through an _apiKey_ in the HTTP Header.
+A tool to monitor the number of HTTP requests.
+
+It uses a key as extra parameter in the HTTP header, and optionally can filter the HTTP request per _origin_.
 
 ![ci/cd](https://github.com/Arfius/requests-counter/actions/workflows/request-counter.yml/badge.svg)
 
 #### Use cases
 
-Scenario: A Company that sell a Service that is limited by a max amount of requests.
+Scenario: A Company that sell a Service that is limited by a max amount of requests and/or filtered by origin HTTP request parameter.
 
-- As a Company, I would set a request limit for an _api_key_.
-- As a Company, I would update/destroy/inspect the status of subscription via api.
+- As a Company, I want to set a request limit for an _apiKey_and/or by origin.
+- As a Company, I want to update/destroy/inspect the status of subscription via api.
 
 ### Installation
 
