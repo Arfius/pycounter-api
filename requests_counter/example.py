@@ -17,7 +17,7 @@ asyncio.create_task(cl.setup([("my-api-key-test", 10)]))
 async def check_key(apiKey: str = Header(None)):
     res = await cl.decrease(apiKey)
     if res is False:
-        raise HTTPException(429, "Too Many Requests", headers={"Retry-After": "renew subscription"})
+        raise HTTPException(403, "Usage Limit Exceeded")
     return apiKey
 
 
